@@ -48,22 +48,22 @@ function Game(props) {
   });
 
   function handleClick(i) {
-    const history_new = history.slice(0, move.stepNumber + 1);
-    const current = history_new[history_new.length - 1];
+    const newHistory = history.slice(0, move.stepNumber + 1);
+    const current = newHistory[newHistory.length - 1];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
     squares[i] = move.xIsNext ? "X" : "O";
     setHistory(
-      history_new.concat([
+      newHistory.concat([
         {
           squares: squares,
         },
       ])
     );
     setMove({
-      stepNumber: history_new.length,
+      stepNumber: newHistory.length,
       xIsNext: !move.xIsNext,
     });
   }
